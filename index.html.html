@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atgaivinti prisiminimai – Dovana tėvams</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #2f2219;
+            --bg-card: #3b281c;
+            --bg-light: #f7eee3;
+            --accent: #d9a45a;
+            --accent-soft: #f2c98a;
+            --text-main: #fdf4e7;
+            --text-muted: #e2d3c0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: radial-gradient(circle at top, #5a3b25 0, #2b1e17 50%, #20140f 100%);
+            color: var(--text-main);
+            min-height: 100vh;
+        }
+
+        .page {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px 16px 40px;
+        }
+
+        /* HERO */
+
+        .hero {
+            position: relative;
+            border-radius: 26px;
+            overflow: hidden;
+            background: #4b3322;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+            margin-bottom: 32px;
+            display: grid;
+            grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+              radial-gradient(circle at 10% 0, rgba(255, 255, 255, 0.18), transparent 55%),
+              radial-gradient(circle at 90% 100%, rgba(255, 184, 108, 0.35), transparent 60%);
+            background-size: 35%, 60%;
+            background-position: -5% -10%, 120% 130%;
+            background-repeat: no-repeat;
+            opacity: 0.35;
+            mix-blend-mode: screen;
+        }
+
+        .hero-content {
+            position: relative;
+            padding: 32px 30px 30px;
+        }
+
+        .hero-kicker {
+            font-size: 0.95rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--accent-soft);
+            margin-bottom: 10px;
+        }
+
+        .hero-title {
+            font-size: clamp(2.2rem, 4vw, 2.8rem);
+            line-height: 1.1;
+            margin-bottom: 12px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.02rem;
+            color: var(--text-muted);
+            margin-bottom: 18px;
+            max-width: 470px;
+        }
+
+        .hero-list {
+            list-style: none;
+            margin: 12px 0 20px;
+        }
+
+        .hero-list li {
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            position: relative;
+            padding-left: 22px;
+        }
+
+        .hero-list li::before {
+            content: "♪";
+            position: absolute;
+            left: 0;
+            top: 1px;
+            font-size: 0.85rem;
+            color: var(--accent-soft);
+        }
+
+        .hero-cta-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 14px;
+            margin-top: 8px;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 22px;
+            border-radius: 999px;
+            border: none;
+            cursor: pointer;
+            background: linear-gradient(135deg, #f0c27b, #d99a4a);
+            color: #3b2414;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+            transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            filter: brightness(1.05);
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.55);
+        }
+
+        .hero-note {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+
+        .hero-contact {
+            margin-top: 16px;
+            font-size: 0.9rem;
+        }
+
+        .hero-contact span {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .hero-contact a {
+            color: var(--accent-soft);
+            text-decoration: none;
+        }
+
+        .hero-contact a:hover {
+            text-decoration: underline;
+        }
+
+        .hero-photo {
+            position: relative;
+            padding: 26px 26px 26px 10px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        .hero-photo-inner {
+            position: relative;
+            width: 100%;
+            max-width: 330px;
+            aspect-ratio: 1/1;
+            border-radius: 50%;
+            padding: 7px;
+            background: radial-gradient(circle at 30% 0, #f5e2be, #c88c40, #7a4a25);
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.65);
+        }
+
+        .hero-photo-inner img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-photo-badge {
+            position: absolute;
+            bottom: 8%;
+            right: 4%;
+            background: rgba(35, 20, 14, 0.92);
+            border-radius: 18px;
+            padding: 8px 12px;
+            font-size: 0.75rem;
+            color: var(--accent-soft);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.7);
+        }
+
+        /* CONTENT SECTIONS */
+
+        .layout-two {
+            display: grid;
+            grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+            gap: 20px;
+            margin-bottom: 26px;
+        }
+
+        /* AUDIO */
+
+        .audio-player {
+            margin-top: 12px;
+            width: 100%;
+            max-width: 520px;
+        }
+
+        /* VIDEO */
+
+        .video-card {
+            text-align: center;
+        }
+
+        .video-thumb {
+            margin: 14px auto 0;
+            display: block;
+            width: 100%;
+            max-width: 760px;
+            border: none;
+            padding: 0;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .video-thumb-inner {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.55);
+            border: 1px solid rgba(255, 223, 186, 0.14);
+            background: rgba(28, 16, 11, 0.9);
+        }
+
+        .video-thumb img {
+            display: block;
+            width: 100%;
+            height: auto;
+            filter: saturate(1.02) contrast(1.03);
+        }
+
+        .video-play {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            background: radial-gradient(circle at center, rgba(0,0,0,0.15) 0, rgba(0,0,0,0.55) 70%, rgba(0,0,0,0.75) 100%);
+        }
+
+        .video-play-btn {
+            width: 86px;
+            height: 86px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            background: rgba(217, 164, 90, 0.92);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.6);
+            display: grid;
+            place-items: center;
+        }
+
+        .video-play-btn::before {
+            content: "";
+            width: 0;
+            height: 0;
+            border-top: 14px solid transparent;
+            border-bottom: 14px solid transparent;
+            border-left: 22px solid #3b2414;
+            margin-left: 4px;
+        }
+
+        .video-hint {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 18px;
+            background: rgba(0, 0, 0, 0.82);
+            z-index: 9999;
+        }
+
+        .modal.is-open {
+            display: flex;
+        }
+
+        .modal-inner {
+            width: min(1100px, 100%);
+            background: rgba(28, 16, 11, 0.96);
+            border-radius: 18px;
+            border: 1px solid rgba(255, 223, 186, 0.18);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.75);
+            overflow: hidden;
+        }
+
+        .modal-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 10px 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .modal-title {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .modal-close {
+            border: 1px solid rgba(255,255,255,0.18);
+            background: rgba(0,0,0,0.25);
+            color: var(--text-main);
+            border-radius: 999px;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .modal video {
+            width: 100%;
+            height: auto;
+            display: block;
+            background: #000;
+        }
+
+        .card {
+            background: rgba(28, 16, 11, 0.9);
+            border-radius: 22px;
+            padding: 22px 20px 20px;
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.55);
+            border: 1px solid rgba(255, 223, 186, 0.08);
+        }
+
+        .card-header {
+            margin-bottom: 10px;
+        }
+
+        .card-kicker {
+            font-size: 0.78rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--accent-soft);
+            margin-bottom: 4px;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 8px;
+        }
+
+        .tag-list {
+            list-style: none;
+            margin-top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .tag {
+            font-size: 0.8rem;
+            padding: 4px 9px;
+            border-radius: 999px;
+            background: rgba(92, 62, 39, 0.9);
+            border: 1px solid rgba(242, 201, 138, 0.5);
+            color: var(--accent-soft);
+        }
+
+        .img-card {
+            background: #3a2619;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .img-card img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        /* KLAUSIMYNAS */
+
+        .questions {
+            margin-bottom: 26px;
+        }
+
+        .questions ul {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .questions li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .questions-number {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: #3b2414;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .questions-footer {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 10px;
+        }
+
+        /* PAKETAI */
+
+        .pricing {
+            margin-bottom: 28px;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            margin-top: 14px;
+        }
+
+        .pricing-card {
+            background: rgba(34, 20, 13, 0.95);
+            border-radius: 18px;
+            padding: 16px 14px 15px;
+            border: 1px solid rgba(217, 164, 90, 0.7);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.55);
+        }
+
+        .pricing-name {
+            font-size: 0.95rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent-soft);
+            margin-bottom: 5px;
+        }
+
+        .pricing-price {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .pricing-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .pricing-note {
+            font-size: 0.78rem;
+            color: #d8c5ad;
+        }
+
+        /* FOOTER */
+
+        .footer {
+            margin-top: 10px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 0.78rem;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+            .hero-photo {
+                order: -1;
+                padding: 20px 24px 6px;
+                justify-content: center;
+            }
+            .hero-photo-inner {
+                max-width: 260px;
+            }
+            .layout-two {
+                grid-template-columns: 1fr;
+            }
+            .pricing-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 640px) {
+            .page {
+                padding-inline: 14px;
+            }
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="page">
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Asmeninė daina ir gyvas klipas iš jų prisiminimų</h1>
+            <p class="hero-subtitle">
+                Atgaivinti&nbsp;Prisiminimai – tai jautri dovana, kuri sustabdo akimirką:
+                iš nuotraukų ir istorijų sukuriame asmeninę dainą ir šiltą vaizdo klipą.
+            </p>
+
+            <div class="hero-cta-row">
+                <a class="btn-primary" href="https://www.facebook.com/atgaivintiprisiminimai" target="_blank" rel="noopener">
+                    Facebook langas „Atgaivinti prisiminimai“
+                </a>
+                <span class="hero-note">Tiesiog parašykite žinutę ir atsakykite į 6 klausimus.</span>
+            </div>
+
+            <div class="hero-contact">
+                <span>Artūras</span>
+                <span>• Tel. <a href="tel:+37068559399">+370 685 59399</a></span>
+                <span>• El. paštas: <a href="mailto:atgaivinti.prisiminimai@gmail.com">atgaivinti.prisiminimai@gmail.com</a></span>
+            </div>
+        </div>
+
+        <div class="hero-photo">
+            <div class="hero-photo-inner">
+                <img src="assets/hero-photo.png" alt="Laimingi tėvai">
+                <div class="hero-photo-badge">
+                    Dovana, kuri lieka<br>visam gyvenimui
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIDEO PRISTATYMAS -->
+    <section class="card video-card" id="video">
+        <div class="card-header">
+            <div class="card-kicker">Video pristatymas</div>
+            <h2 class="card-title">Pažiūrėkite trumpą klipo pavyzdį</h2>
+        </div>
+        <p>Paspauskite ant nuotraukos – atsidarys video ir pradės groti.</p>
+
+        <button class="video-thumb" type="button" id="openVideo">
+            <span class="video-thumb-inner">
+                <img src="assets/hero-photo.png" alt="Atgaivinti prisiminimai – video pristatymas">
+                <span class="video-play" aria-hidden="true">
+                    <span class="video-play-btn"></span>
+                </span>
+            </span>
+        </button>
+        <div class="video-hint">Jei garsas išjungtas, įjunkite jį video grotuve.</div>
+    </section>
+
+    <!-- APIE PASLAUGĄ + KAIP VYKSTA -->
+    <section class="layout-two">
+        <article class="card">
+            <div class="card-header">
+                <div class="card-kicker">Apie paslaugą</div>
+                <h2 class="card-title">Daina ir istorija iš Jūsų nuotraukų</h2>
+            </div>
+            <p>
+                Iš tėvų gyvenimo nuotraukų, kelių prisiminimų ir kelių sakinių apie jų santykį
+                kuriame švelnią, asmeninę dainą. Ji įrašoma profesionaliai ir sujungiama
+                su Jūsų atsiųstomis nuotraukomis ir video kadrais.
+            </p>
+            <p>
+                Rezultatas – kelių minučių vaizdo klipas su Jūsų tėvų istorija, kurią jie
+                išgirs ir pamatys pirmą kartą. Tai dovana, kuri sukelia šypsenas, juoką ir ašaras
+                iš laimės.
+            </p>
+            <ul class="tag-list">
+                <li class="tag">Gimtadieniui</li>
+                <li class="tag">Jubiliejui</li>
+                <li class="tag">Vestuvėms</li>
+                <li class="tag">Velionio atminimui</li>
+                <li class="tag">Padėkos dovanai</li>
+            </ul>
+        </article>
+
+        <aside class="card img-card">
+            <img src="assets/steps.png" alt="Kaip vyksta užsakymas – iliustracija">
+        </aside>
+    </section>
+
+    <!-- SUKURIAME DAINĄ (PAVYZDYS) -->
+    <section class="card">
+        <div class="card-header">
+            <div class="card-kicker">Kaip vyksta užsakymas</div>
+            <h2 class="card-title">3. Sukuriame dainą (pavyzdys)</h2>
+        </div>
+        <p>Čia galite paklausyti trumpo pavyzdžio, kaip skamba personalizuota daina.</p>
+        <audio class="audio-player" controls preload="metadata">
+            <source src="assets/valentinos-daina.mp3" type="audio/mpeg">
+            Jūsų naršyklė nepalaiko audio.
+        </audio>
+    </section>
+
+    <!-- KLAUSIMYNAS 1–6 -->
+    <section class="card questions">
+        <div class="card-header">
+            <div class="card-kicker">Klausimynas žinutei</div>
+            <h2 class="card-title">Kaip užsakyti dovaną tėvams</h2>
+        </div>
+        <p>
+            Užsakymas vyksta paprastai – žinutėje per <strong>Messenger</strong> atsakykite į šiuos
+            klausimus, sunumeruodami 1–6:
+        </p>
+        <ul>
+            <li>
+                <span class="questions-number">1</span>
+                <span>Kam skirta dovana? (vardas, proga)</span>
+            </li>
+            <li>
+                <span class="questions-number">2</span>
+                <span>3 žodžiai + vienas prisiminimas, apibūdinantys tėvus ar jų istoriją.</span>
+            </li>
+            <li>
+                <span class="questions-number">3</span>
+                <span>Pageidaujama nuotaika: rami, šventiška, linksma, ar su humoru?</span>
+            </li>
+            <li>
+                <span class="questions-number">4</span>
+                <span>Kiek maždaug turėsite nuotraukų / video?</span>
+            </li>
+            <li>
+                <span class="questions-number">5</span>
+                <span>Pasirinktas paketas (69 € / 99 € / 149 €).</span>
+            </li>
+            <li>
+                <span class="questions-number">6</span>
+                <span>Jūsų vardas ir el. paštas (ar pageidaujamas kontaktas).</span>
+            </li>
+        </ul>
+        <p class="questions-footer">
+            Toje pačioje žinutėje galite <strong>pridėti nuotraukas</strong> arba atsiųsti nuorodą į
+            „Google Drive“, „WeTransfer“ ar kitą saugyklą. Gavęs informaciją, patvirtinsiu terminą ir
+            atsiųsiu apmokėjimo duomenis. Apmokėjimas – po užsakymo patvirtinimo.
+        </p>
+    </section>
+
+    <!-- PAKETAI IR KAINOS -->
+    <section class="card pricing">
+        <div class="card-header">
+            <div class="card-kicker">Paketai ir kainos</div>
+            <h2 class="card-title">Akcija besidalinantiems su Facebook draugais</h2>
+        </div>
+        <p class="questions-footer">
+            Pasirinkite paketo trukmę, o parašę mums per Facebook langą „Atgaivinti prisiminimai“ ir pasidalinę įrašu
+            su savo draugais, galėsite pasinaudoti akciniu pasiūlymu (detales atsiųsime žinutėje).
+        </p>
+
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="pricing-name">Pagrindinis</div>
+                <div class="pricing-price">69 €</div>
+                <p class="pricing-desc">
+                    Trumpa 2–3 min. daina ir klipas nedidelei progai ar kelioms svarbiausioms
+                    gyvenimo akimirkoms.
+                </p>
+                <p class="pricing-note">
+                    Rekomenduojama, jei nuotraukų nėra labai daug arba norite trumpos, koncentruotos dovanos.
+                </p>
+            </div>
+
+            <div class="pricing-card">
+                <div class="pricing-name">Klasikinis</div>
+                <div class="pricing-price">99 €</div>
+                <p class="pricing-desc">
+                    3–4 min. daina ir klipas su platesne istorija – vaikystė, šeima, šventės ir bendros kelionės.
+                </p>
+                <p class="pricing-note">
+                    Populiariausias pasirinkimas jubiliejams ir vestuvių sukaktims.
+                </p>
+            </div>
+
+            <div class="pricing-card">
+                <div class="pricing-name">Išskirtinis</div>
+                <div class="pricing-price">149 €</div>
+                <p class="pricing-desc">
+                    Ilgesnė 4–5 min. daina su detalesne istorija, daugiau kadrų ir papildomų akcentų klipo montaže.
+                </p>
+                <p class="pricing-note">
+                    Tinka, kai norite maksimaliai išnaudoti turimus prisiminimus ir sukurti didelį „wow“ efektą.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAPILDOMA ILIUSTRACIJA / KAIP VYKSTA -->
+    <section class="card img-card">
+        <img src="assets/pricing.png" alt="Paketai ir vizualai">
+    </section>
+
+    <footer class="footer">
+        &copy; 2026 Atgaivinti&nbsp;Prisiminimai. Visi prisiminimai – saugūs, visi jausmai – tikri.
+    </footer>
+
+</div>
+
+<!-- VIDEO MODAL -->
+<div class="modal" id="videoModal" aria-hidden="true">
+    <div class="modal-inner" role="dialog" aria-modal="true" aria-label="Video pristatymas">
+        <div class="modal-bar">
+            <div class="modal-title">Atgaivinti prisiminimai – video pristatymas</div>
+            <button class="modal-close" type="button" id="closeVideo">Uždaryti</button>
+        </div>
+        <video id="promoVideo" controls playsinline preload="metadata">
+            <source src="atgaivinti_prisiminimai_ video pristatymas.mp4" type="video/mp4">
+            Jūsų naršyklė nepalaiko video.
+        </video>
+    </div>
+</div>
+
+<script>
+    (function () {
+        const modal = document.getElementById('videoModal');
+        const openBtn = document.getElementById('openVideo');
+        const closeBtn = document.getElementById('closeVideo');
+        const video = document.getElementById('promoVideo');
+
+        function openModal() {
+            modal.classList.add('is-open');
+            modal.setAttribute('aria-hidden', 'false');
+            try {
+                video.currentTime = 0;
+                video.play();
+            } catch (e) {}
+        }
+
+        function closeModal() {
+            modal.classList.remove('is-open');
+            modal.setAttribute('aria-hidden', 'true');
+            try { video.pause(); } catch (e) {}
+        }
+
+        openBtn?.addEventListener('click', openModal);
+        closeBtn?.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+        });
+    })();
+</script>
+
+</body>
+</html>
+
